@@ -3,34 +3,34 @@ import { useState } from "react";
 import AddTask from "./assets/Component/AddTask";
 
 const App = () => {
-  const [movies, setMovies] = useState([]);
-  const [newMovie, setNewMovie] = useState({ title: "" });
+  const [tasks, setTasks] = useState([]);
+  const [newTask, setNewTask] = useState({ name: "" });
 
-  const addMovie = () => {
-    if (newMovie.title) {
-      setMovies([...movies, { id: Date.now(), title: newMovie.title }]);
-      setNewMovie({ title: "" });
+  const addTask = () => {
+    if (newTask.name) {
+      setTasks([...tasks, { id: Date.now(), name: newTask.name }]);
+      setNewTask({ name: "" });
     }
   };
 
-  const deleteMovie = (id) => {
-    setMovies(movies.filter((movie) => movie.id !== id));
+  const deleteTask = (id) => {
+    setTasks(tasks.filter((task) => task.id !== id));
   };
 
   const changeHandle = (e) => {
-    setNewMovie({ ...newMovie, [e.target.name]: e.target.value });
+    setNewTask({ ...newTask, [e.target.name]: e.target.value });
   };
   return (
     <div
       className="
-    h-screen flex flex-col items-center "
+      h-screen flex flex-col items-center"
     >
       <div
         className="
-      flex flex-col items-center
-      h-[800px] w-[600px] mt-6
-      bg-indigo-600 rounded-2xl 
-      shadow-[0_5px_10px_rgba(0,0,0,.4)]"
+        flex flex-col items-center
+        h-[800px] w-[600px] mt-6
+        bg-indigo-600 rounded-2xl 
+        shadow-[0_5px_10px_rgba(0,0,0,.4)]"
       >
         <h1
           className="
@@ -47,19 +47,19 @@ const App = () => {
           <input
             className="py-1 text-white  outline-none ml-5 "
             type="text"
-            name="title"
-            value={newMovie.title}
+            name="name"
+            value={newTask.name}
             onChange={changeHandle}
             placeholder="Enter Movie Name"
           />
           <button
             className="h-full w-30 bg-[#ff0069] rounded-r-full rounded-l-full cursor-pointer"
-            onClick={addMovie}
+            onClick={addTask}
           >
             Add Task
           </button>
         </div>
-        <AddTask movies={movies} deleteMovie={deleteMovie} />
+        <AddTask tasks={tasks} deleteTask={deleteTask} />
       </div>
     </div>
   );
